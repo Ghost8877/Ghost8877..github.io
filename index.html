@@ -1,0 +1,2844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <titl mmm — Simple, Transparent Lending</title>
+
+  <meta
+    name="description"
+    content="NovaLend provides a simple online loan application experience."
+  />
+
+  <style>
+    :root {
+      --primary: #5b5cf0;
+      --primary-dark: #4445d8;
+      --secondary: #14b8a6;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --surface-2: #f1f3f9;
+
+      --text: #15172b;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+
+      --shadow: 0 20px 50px rgba(23, 25, 50, .08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229, 231, 235, .7);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 21px;
+      letter-spacing: -.5px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: white;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      box-shadow: 0 8px 20px rgba(91, 92, 240, .25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #4b5563;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 11px;
+      font-weight: 750;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(91, 92, 240, .2);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #c8cbd4;
+      background: #fafafa;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: transparent;
+      font-size: 25px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      padding: 90px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(91, 92, 240, .12), transparent 32%),
+        radial-gradient(circle at 10% 80%, rgba(20, 184, 166, .08), transparent 30%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 99px;
+      color: var(--primary);
+      background: rgba(91, 92, 240, .09);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      max-width: 680px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 580px;
+      margin: 22px 0 30px;
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .trust-row {
+      display: flex;
+      gap: 28px;
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .trust-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 20px;
+    }
+
+    /* =========================
+       CALCULATOR CARD
+    ========================= */
+
+    .calculator-card {
+      background: white;
+      padding: 30px;
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(229, 231, 235, .8);
+    }
+
+    .calculator-card h2 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .calculator-card > p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      border-radius: 11px;
+      padding: 13px 14px;
+      outline: none;
+      transition: .2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(91, 92, 240, .1);
+    }
+
+    input[type="range"] {
+      padding: 0;
+      accent-color: var(--primary);
+      box-shadow: none;
+    }
+
+    .range-value {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .calculator-result {
+      padding: 20px;
+      border-radius: 16px;
+      background: #f7f7ff;
+      margin-top: 22px;
+    }
+
+    .monthly-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .monthly-payment {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin: 2px 0;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .result-grid div {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .result-grid span:first-child {
+      color: var(--muted);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: 42px;
+      line-height: 1.1;
+      letter-spacing: -1.7px;
+    }
+
+    .section-heading p {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      background: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      transition: .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--primary);
+      background: #f0f0ff;
+      font-size: 23px;
+      margin-bottom: 18px;
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .product-card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .product-card li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      background: var(--primary);
+      color: white;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       BENEFITS
+    ========================= */
+
+    .benefits {
+      background: #11132b;
+      color: white;
+    }
+
+    .benefits .section-heading p {
+      color: #a8abc0;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit {
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .benefit-icon {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .benefit h3 {
+      margin-bottom: 7px;
+    }
+
+    .benefit p {
+      color: #a8abc0;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FAQ
+    ========================= */
+
+    .faq-list {
+      max-width: 800px;
+      margin: auto;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 19px 20px;
+      font-weight: 750;
+      text-align: left;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq.open .faq-answer {
+      display: block;
+    }
+
+    .faq.open .faq-question span {
+      transform: rotate(45deg);
+    }
+
+    .faq-question span {
+      transition: .2s;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta-box {
+      padding: 60px;
+      border-radius: 28px;
+      color: white;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.16), transparent 25%),
+        linear-gradient(135deg, #5253e9, #7439d6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .cta-box h2 {
+      font-size: 38px;
+      line-height: 1.1;
+      max-width: 600px;
+      letter-spacing: -1px;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,.8);
+      margin-top: 10px;
+    }
+
+    .cta-box .btn {
+      background: white;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #0d0f22;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    footer .logo {
+      color: white;
+    }
+
+    .footer-description {
+      color: #9da0b6;
+      font-size: 14px;
+      max-width: 330px;
+      margin-top: 15px;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #9da0b6;
+      font-size: 13px;
+      margin: 9px 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #7e8198;
+      font-size: 12px;
+      padding-top: 25px;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      place-items: center;
+      background: rgba(8, 10, 25, .65);
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal {
+      width: min(700px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 30px 100px rgba(0,0,0,.25);
+      padding: 30px;
+      position: relative;
+    }
+
+    .modal.small {
+      width: min(430px, 100%);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f2f5;
+      font-size: 20px;
+    }
+
+    .modal h2 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .modal-subtitle {
+      color: var(--muted);
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 15px 0;
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 4px;
+    }
+
+    /* =========================
+       DASHBOARD
+    ========================= */
+
+    .dashboard {
+      display: none;
+      min-height: 100vh;
+      background: #f4f5fa;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    .dashboard-header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-nav {
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--primary);
+    }
+
+    .dashboard-content {
+      padding: 40px 0;
+    }
+
+    .dashboard-title {
+      margin-bottom: 25px;
+    }
+
+    .dashboard-title h1 {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+
+    .dashboard-title p {
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .stat-card small {
+      color: var(--muted);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 25px;
+      margin-top: 5px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 20px;
+    }
+
+    .dashboard-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 24px;
+    }
+
+    .dashboard-card h3 {
+      margin-bottom: 18px;
+    }
+
+    .application-status {
+      padding: 20px;
+      border-radius: 14px;
+      background: #f7f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .status-pill {
+      padding: 6px 11px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 800;
+      background: #fff4d8;
+      color: #9a6700;
+    }
+
+    .status-pill.approved {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e8e9f0;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .progress div {
+      height: 100%;
+      width: 65%;
+      background: var(--primary);
+      border-radius: inherit;
+    }
+
+    .payment-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .payment-table th,
+    .payment-table td {
+      padding: 13px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .payment-table th {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .admin-banner {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #fff4d8;
+      color: #7c5300;
+      font-size: 13px;
+    }
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 2000;
+      padding: 15px 18px;
+      border-radius: 12px;
+      background: #11132b;
+      color: white;
+      box-shadow: 0 15px 40px rgba(0,0,0,.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .3s;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid,
+      .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 35px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav-links,
+      .nav-actions .btn-secondary {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .trust-row {
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .product-grid,
+      .benefit-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading h2 {
+        font-size: 32px;
+      }
+
+      .cta-box {
+        padding: 35px 25px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-box h2 {
+        font-size: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .form-grid,
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-full {
+        grid-column: auto;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dashboard-content {
+        padding: 25px 0;
+      }
+
+      .calculator-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<div id="mainSite">
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="#" class="logo">
+        <span class="logo-mark">N</span>
+        NovaLend
+      </a>
+
+      <nav class="nav-links">
+        <a href="#loans">Loans</a>
+        <a href="#how">How it works</a>
+        <a href="#benefits">Why us</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="openLogin()">
+          Sign in
+        </button>
+
+        <button class="btn btn-primary" onclick="openApplication()">
+          Apply now
+        </button>
+
+        <button class="mobile-menu" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          ● Simple online lending
+        </div>
+
+        <h1>
+          Money when you need it,
+          <span>without the hassle.</span>
+        </h1>
+
+        <p>
+          Apply online in minutes, see your estimated payment,
+          and manage your loan from one simple dashboard.
+        </p>
+
+        <div class="hero-buttons">
+          <button
+            class="btn btn-primary"
+            onclick="openApplication()"
+          >
+            Check your options →
+          </button>
+
+          <a href="#how" class="btn btn-secondary">
+            How it works
+          </a>
+        </div>
+
+        <div class="trust-row">
+
+          <div class="trust-item">
+            <strong>$5k–$50k</strong>
+            Loan amounts
+          </div>
+
+          <div class="trust-item">
+            <strong>24–72 mo.</strong>
+            Flexible terms
+          </div>
+
+          <div class="trust-item">
+            <strong>100%</strong>
+            Online application
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CALCULATOR -->
+      <div class="calculator-card">
+
+        <h2>Loan calculator</h2>
+
+        <p>
+          Estimate your monthly payment.
+        </p>
+
+        <div class="field">
+
+          <label>
+            Loan amount
+          </label>
+
+          <input
+            id="loanAmount"
+            type="range"
+            min="5000"
+            max="50000"
+            step="500"
+            value="25000"
+            oninput="calculateLoan()"
+          />
+
+          <div class="range-value">
+            <span>$5,000</span>
+            <strong id="amountDisplay">$25,000</strong>
+            <span>$50,000</span>
+          </div>
+
+        </div>
+
+        <div class="field-row">
+
+          <div class="field">
+
+            <label>
+              Term
+            </label>
+
+            <select
+              id="loanTerm"
+              onchange="calculateLoan()"
+            >
+              <option value="24">24 months</option>
+              <option value="36" selected>36 months</option>
+              <option value="48">48 months</option>
+              <option value="60">60 months</option>
+              <option value="72">72 months</option>
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Estimated APR
+            </label>
+
+            <select
+              id="loanRate"
+              onchange="calculateLoan()"
+            >
+              <option value="8.99">8.99%</option>
+              <option value="12.99" selected>12.99%</option>
+              <option value="17.99">17.99%</option>
+              <option value="24.99">24.99%</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="calculator-result">
+
+          <div class="monthly-label">
+            Estimated monthly payment
+          </div>
+
+          <div
+            class="monthly-payment"
+            id="monthlyPayment"
+          >
+            $842
+          </div>
+
+          <div class="result-grid">
+
+            <div>
+              <span>Loan amount</span>
+              <strong id="resultAmount">$25,000</strong>
+            </div>
+
+            <div>
+              <span>Interest</span>
+              <strong id="resultInterest">$5,312</strong>
+            </div>
+
+            <div>
+              <span>Term</span>
+              <strong id="resultTerm">36 mo.</strong>
+            </div>
+
+            <div>
+              <span>APR</span>
+              <strong id="resultRate">12.99%</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          style="width:100%;margin-top:20px;"
+          onclick="openApplication()"
+        >
+          Start application
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="loans" class="products">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>A loan for what matters to you.</h2>
+        <p>
+          Flexible borrowing options designed around different needs.
+        </p>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-card">
+
+          <div class="product-icon">🏠</div>
+
+          <h3>Personal Loan</h3>
+
+          <p>
+            Flexible financing for major expenses, projects,
+            purchases, or unexpected costs.
+          </p>
+
+          <ul>
+            <li>$5,000–$50,000</li>
+            <li>Fixed monthly payments</li>
+            <li>Flexible repayment terms</li>
+            <li>No collateral required*</li>
+          </ul>
+
+          <button
+            class="btn btn-secondary"
+            style="width:100%;margin-top:22px;"
+            onclick="openApplication('Personal Loan')"
+          >
+            Apply
+          </button>
+
+        </div>
+
+        <div class="product-card">
+
+          <div class="product-icon">🚗</div>
+
+          <h3>Auto Loan</h3>
+
+          <p>
+            Financing designed to help you purchase a new
+            or used vehicle.
+          </p>
+
+          <ul>
+            <li>Competitive rates</li>
+            <li>New and used vehicles</li>
+            <li>Multiple term options</li>
+            <li>Online application</li>
+          </ul>
+
+          <button
+            class="btn btn-secondary"
+            style="width:100%;margin-top:22px;"
+            onclick="openApplication('Auto Loan')"
+          >
+            Apply
+          </button>
+
+        </div>
+
+        <div class="product-card">
+
+          <div class="product-icon">💳</div>
+
+          <h3>Debt Consolidation</h3>
+
+          <p>
+            Combine eligible high-interest debts into one
+            manageable payment.
+          </p>
+
+          <ul>
+            <li>One monthly payment</li>
+            <li>Fixed repayment schedule</li>
+            <li>Potentially simplify finances</li>
+            <li>Online application</li>
+          </ul>
+
+          <button
+            class="btn btn-secondary"
+            style="width:100%;margin-top:22px;"
+            onclick="openApplication('Debt Consolidation')"
+          >
+            Apply
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>How it works</h2>
+
+        <p>
+          A simple application process from start to finish.
+        </p>
+
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <h3>Apply online</h3>
+
+          <p>
+            Tell us about yourself and the financing you're looking for.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <h3>Review options</h3>
+
+          <p>
+            Review available terms, rates and estimated payments.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <h3>Complete verification</h3>
+
+          <p>
+            Provide the information and documents required for review.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <div class="step-number">4</div>
+
+          <h3>Manage your loan</h3>
+
+          <p>
+            Track your application and payments through your account.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits" class="benefits">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Built around you.</h2>
+
+        <p>
+          A straightforward digital lending experience.
+        </p>
+
+      </div>
+
+      <div class="benefit-grid">
+
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <h3>Fast online process</h3>
+          <p>
+            Complete your initial application online without
+            unnecessary paperwork.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">🔒</div>
+          <h3>Security focused</h3>
+          <p>
+            Designed with secure account and information handling
+            in mind.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">📱</div>
+          <h3>Mobile friendly</h3>
+          <p>
+            Apply and manage your account from your phone,
+            tablet or computer.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">📊</div>
+          <h3>Clear payments</h3>
+          <p>
+            See your estimated payment, term and total interest
+            before proceeding.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">💬</div>
+          <h3>Support</h3>
+          <p>
+            Give borrowers clear ways to contact your lending
+            support team.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">🧾</div>
+          <h3>Digital documents</h3>
+          <p>
+            Keep application and loan documentation organized
+            in one place.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>Frequently asked questions</h2>
+        <p>
+          Some common questions about the application process.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq">
+
+          <button class="faq-question">
+            What loan amounts are available?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            This demo is configured for loan amounts between
+            $5,000 and $50,000. A production lender can configure
+            its own products, limits and eligibility criteria.
+          </div>
+
+        </div>
+
+        <div class="faq">
+
+          <button class="faq-question">
+            How long does an application take?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            The demo application takes only a few minutes.
+            Actual underwriting and funding timelines depend
+            on the lender, verification requirements and loan product.
+          </div>
+
+        </div>
+
+        <div class="faq">
+
+          <button class="faq-question">
+            Does applying guarantee approval?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            No. An application is subject to applicable eligibility,
+            underwriting, verification and approval requirements.
+          </div>
+
+        </div>
+
+        <div class="faq">
+
+          <button class="faq-question">
+            Can I manage my loan online?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            Yes. The demo includes a borrower dashboard where a
+            customer can view application status, loan information
+            and a sample repayment schedule.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section>
+
+    <div class="container">
+
+      <div class="cta-box">
+
+        <div>
+          <h2>
+            Ready to explore your borrowing options?
+          </h2>
+
+          <p>
+            Start the application and see what information you'll need.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          onclick="openApplication()"
+        >
+          Apply online →
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <a href="#" class="logo">
+            <span class="logo-mark">N</span>
+            NovaLend
+          </a>
+
+          <p class="footer-description">
+            A demonstration lending platform interface.
+            Replace this content with your company's actual
+            legal, licensing and product information.
+          </p>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Products</h4>
+
+          <a href="#loans">Personal Loans</a>
+          <a href="#loans">Auto Loans</a>
+          <a href="#loans">Debt Consolidation</a>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Company</h4>
+
+          <a href="#how">How it works</a>
+          <a href="#benefits">Why NovaLend</a>
+          <a href="#faq">FAQ</a>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Legal</h4>
+
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Licenses</a>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 NovaLend. Demo website.
+        </span>
+
+        <span>
+          * Product availability and terms are subject to eligibility.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION MODAL
+===================================================== -->
+
+<div
+  id="applicationModal"
+  class="modal-overlay"
+>
+
+  <div class="modal">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('applicationModal')"
+    >
+      ×
+    </button>
+
+    <h2>Loan application</h2>
+
+    <p class="modal-subtitle">
+      Complete the form below to start your application.
+    </p>
+
+    <form id="applicationForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>First name</label>
+
+          <input
+            id="firstName"
+            required
+            placeholder="John"
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Last name</label>
+
+          <input
+            id="lastName"
+            required
+            placeholder="Smith"
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Email</label>
+
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="john@example.com"
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Phone</label>
+
+          <input
+            id="phone"
+            type="tel"
+            required
+            placeholder="(555) 555-5555"
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Loan type</label>
+
+          <select id="applicationLoanType">
+
+            <option>Personal Loan</option>
+            <option>Auto Loan</option>
+            <option>Debt Consolidation</option>
+
+          </select>
+
+        </div>
+
+        <div class="field">
+
+          <label>Requested amount</label>
+
+          <input
+            id="requestedAmount"
+            type="number"
+            min="5000"
+            max="50000"
+            value="25000"
+            required
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Annual income</label>
+
+          <input
+            id="income"
+            type="number"
+            min="0"
+            required
+            placeholder="75000"
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label>Employment status</label>
+
+          <select id="employment">
+
+            <option>Employed</option>
+            <option>Self-employed</option>
+            <option>Retired</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+        <div class="field form-full">
+
+          <label>Purpose of loan</label>
+
+          <textarea
+            id="purpose"
+            rows="3"
+            placeholder="Tell us what you plan to use the loan for."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <label class="checkbox">
+
+        <input type="checkbox" required />
+
+        <span>
+          I understand that submitting this demo form does not
+          constitute a loan approval or commitment to lend.
+        </span>
+
+      </label>
+
+      <button
+        class="btn btn-primary"
+        style="width:100%;"
+        type="submit"
+      >
+        Submit application
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     LOGIN MODAL
+===================================================== -->
+
+<div
+  id="loginModal"
+  class="modal-overlay"
+>
+
+  <div class="modal small">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('loginModal')"
+    >
+      ×
+    </button>
+
+    <h2>Welcome back</h2>
+
+    <p class="modal-subtitle">
+      Sign in to your NovaLend account.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="field">
+
+        <label>Email</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          required
+          placeholder="you@example.com"
+        />
+
+      </div>
+
+      <div class="field">
+
+        <label>Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          required
+          placeholder="••••••••"
+        />
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        style="width:100%;"
+        type="submit"
+      >
+        Sign in
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        style="width:100%;margin-top:10px;"
+        onclick="openApplication();closeModal('loginModal')"
+      >
+        Create an account
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div id="dashboard" class="dashboard">
+
+  <div class="dashboard-header">
+
+    <div class="container dashboard-nav">
+
+      <a href="#" class="logo">
+        <span class="logo-mark">N</span>
+        NovaLend
+      </a>
+
+      <div class="user-chip">
+
+        <div class="avatar" id="dashboardAvatar">
+          JS
+        </div>
+
+        <span id="dashboardUser">
+          John Smith
+        </span>
+
+        <button
+          class="btn btn-secondary"
+          style="margin-left:8px;"
+          onclick="logout()"
+        >
+          Log out
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="container dashboard-content">
+
+    <div class="dashboard-title">
+
+      <h1>Good evening, <span id="dashboardFirstName">John</span>.</h1>
+
+      <p>
+        Here's an overview of your loan account.
+      </p>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <small>Loan amount</small>
+        <strong id="dashboardLoan">$25,000</strong>
+      </div>
+
+      <div class="stat-card">
+        <small>Outstanding balance</small>
+        <strong id="dashboardBalance">$25,000</strong>
+      </div>
+
+      <div class="stat-card">
+        <small>Monthly payment</small>
+        <strong id="dashboardPayment">$842</strong>
+      </div>
+
+      <div class="stat-card">
+        <small>Next payment</small>
+        <strong>Sep 1</strong>
+      </div>
+
+    </div>
+
+    <div class="dashboard-grid">
+
+      <div>
+
+        <div class="dashboard-card">
+
+          <h3>Application status</h3>
+
+          <div class="application-status">
+
+            <div>
+
+              <strong id="applicationStatusTitle">
+                Under review
+              </strong>
+
+              <div
+                style="color:var(--muted);font-size:12px;margin-top:3px;"
+              >
+                Application #NL-2026-00142
+              </div>
+
+            </div>
+
+            <span
+              class="status-pill"
+              id="statusPill"
+            >
+              UNDER REVIEW
+            </span>
+
+          </div>
+
+          <div class="progress">
+            <div></div>
+          </div>
+
+          <div
+            style="display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px;"
+          >
+            <span>Submitted</span>
+            <span>Verification</span>
+            <span>Decision</span>
+            <span>Funding</span>
+          </div>
+
+        </div>
+
+        <div
+          class="dashboard-card"
+          style="margin-top:20px;"
+        >
+
+          <h3>Repayment schedule</h3>
+
+          <table class="payment-table">
+
+            <thead>
+
+              <tr>
+                <th>Payment</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>#1</td>
+                <td>Sep 1, 2026</td>
+                <td>$842</td>
+                <td>Upcoming</td>
+              </tr>
+
+              <tr>
+                <td>#2</td>
+                <td>Oct 1, 2026</td>
+                <td>$842</td>
+                <td>Upcoming</td>
+              </tr>
+
+              <tr>
+                <td>#3</td>
+                <td>Nov 1, 2026</td>
+                <td>$842</td>
+                <td>Upcoming</td>
+              </tr>
+
+              <tr>
+                <td>#4</td>
+                <td>Dec 1, 2026</td>
+                <td>$842</td>
+                <td>Upcoming</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="dashboard-card">
+
+          <h3>Account</h3>
+
+          <p
+            style="color:var(--muted);font-size:13px;margin-bottom:15px;"
+          >
+            Account information
+          </p>
+
+          <div style="display:grid;gap:12px;font-size:13px;">
+
+            <div>
+              <span style="color:var(--muted);">
+                Email
+              </span>
+
+              <strong
+                id="dashboardEmail"
+                style="display:block;"
+              >
+                john@example.com
+              </strong>
+            </div>
+
+            <div>
+              <span style="color:var(--muted);">
+                Employment
+              </span>
+
+              <strong style="display:block;">
+                Employed
+              </strong>
+            </div>
+
+            <div>
+              <span style="color:var(--muted);">
+                Loan type
+              </span>
+
+              <strong
+                id="dashboardLoanType"
+                style="display:block;"
+              >
+                Personal Loan
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="dashboard-card" style="margin-top:20px;">
+
+          <h3>Need help?</h3>
+
+          <p
+            style="color:var(--muted);font-size:13px;margin-bottom:15px;"
+          >
+            Our support team can help with questions about
+            your application.
+          </p>
+
+          <button
+            class="btn btn-secondary"
+            style="width:100%;"
+            onclick="showToast('Support request started.')"
+          >
+            Contact support
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="admin-banner">
+
+      <strong>Demo environment:</strong>
+      Application and account information is stored only in
+      this browser. No real loan is being issued.
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+  Application submitted successfully.
+</div>
+
+
+<script>
+
+  /* =====================================================
+     HELPERS
+  ===================================================== */
+
+  const $ = (id) => document.getElementById(id);
+
+  function money(value) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0
+    }).format(value);
+  }
+
+  function moneyExact(value) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(value);
+  }
+
+  function openModal(id) {
+    $(id).classList.add("active");
+  }
+
+  function closeModal(id) {
+    $(id).classList.remove("active");
+  }
+
+  function openApplication(type = "Personal Loan") {
+
+    $("applicationLoanType").value = type;
+
+    closeModal("loginModal");
+
+    openModal("applicationModal");
+
+  }
+
+  function openLogin() {
+    openModal("loginModal");
+  }
+
+  function showToast(message) {
+
+    const toast = $("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
+
+  }
+
+
+  /* =====================================================
+     LOAN CALCULATOR
+  ===================================================== */
+
+  function calculateLoan() {
+
+    const principal =
+      Number($("loanAmount").value);
+
+    const months =
+      Number($("loanTerm").value);
+
+    const annualRate =
+      Number($("loanRate").value);
+
+    const monthlyRate =
+      annualRate / 100 / 12;
+
+    let payment;
+
+    if (monthlyRate === 0) {
+
+      payment = principal / months;
+
+    } else {
+
+      payment =
+        principal *
+        (
+          monthlyRate *
+          Math.pow(1 + monthlyRate, months)
+        ) /
+        (
+          Math.pow(1 + monthlyRate, months) - 1
+        );
+
+    }
+
+    const total =
+      payment * months;
+
+    const interest =
+      total - principal;
+
+    $("amountDisplay").textContent =
+      money(principal);
+
+    $("monthlyPayment").textContent =
+      moneyExact(payment);
+
+    $("resultAmount").textContent =
+      money(principal);
+
+    $("resultInterest").textContent =
+      money(interest);
+
+    $("resultTerm").textContent =
+      months + " mo.";
+
+    $("resultRate").textContent =
+      annualRate.toFixed(2) + "%";
+
+    $("requestedAmount").value =
+      principal;
+
+  }
+
+
+  /* =====================================================
+     APPLICATION FORM
+  ===================================================== */
+
+  $("applicationForm").addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+      const firstName =
+        $("firstName").value.trim();
+
+      const lastName =
+        $("lastName").value.trim();
+
+      const email =
+        $("email").value.trim();
+
+      const loanType =
+        $("applicationLoanType").value;
+
+      const amount =
+        Number($("requestedAmount").value);
+
+      const income =
+        Number($("income").value);
+
+      if (
+        amount < 5000 ||
+        amount > 50000
+      ) {
+
+        showToast(
+          "Loan amount must be between $5,000 and $50,000."
+        );
+
+        return;
+
+      }
+
+      if (income <= 0) {
+
+        showToast(
+          "Please enter a valid annual income."
+        );
+
+        return;
+
+      }
+
+      const application = {
+
+        id:
+          "NL-" +
+          new Date().getFullYear() +
+          "-" +
+          Math.floor(
+            10000 + Math.random() * 89999
+          ),
+
+        firstName,
+        lastName,
+        email,
+
+        phone:
+          $("phone").value,
+
+        loanType,
+
+        amount,
+
+        income,
+
+        employment:
+          $("employment").value,
+
+        purpose:
+          $("purpose").value,
+
+        status:
+          "Under review",
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+      localStorage.setItem(
+        "novaLendApplication",
+        JSON.stringify(application)
+      );
+
+      updateDashboard(application);
+
+      closeModal("applicationModal");
+
+      $("applicationForm").reset();
+
+      showToast(
+        "Application submitted successfully."
+      );
+
+      setTimeout(() => {
+
+        showDashboard();
+
+      }, 700);
+
+    }
+  );
+
+
+  /* =====================================================
+     LOGIN
+  ===================================================== */
+
+  $("loginForm").addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+      const email =
+        $("loginEmail").value.trim();
+
+      const stored =
+        JSON.parse(
+          localStorage.getItem(
+            "novaLendApplication"
+          ) || "null"
+        );
+
+      if (
+        stored &&
+        stored.email.toLowerCase() ===
+        email.toLowerCase()
+      ) {
+
+        updateDashboard(stored);
+
+        closeModal("loginModal");
+
+        showDashboard();
+
+        showToast("Signed in successfully.");
+
+      } else {
+
+        /*
+          Demo behavior:
+          creates a temporary dashboard profile.
+        */
+
+        const firstName = "John";
+        const lastName = "Smith";
+
+        const demoUser = {
+
+          firstName,
+          lastName,
+
+          email,
+
+          phone: "",
+
+          loanType: "Personal Loan",
+
+          amount: 25000,
+
+          income: 75000,
+
+          employment: "Employed",
+
+          status: "Under review"
+
+        };
+
+        updateDashboard(demoUser);
+
+        closeModal("loginModal");
+
+        showDashboard();
+
+        showToast(
+          "Demo account loaded."
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     DASHBOARD
+  ===================================================== */
+
+  function updateDashboard(application) {
+
+    if (!application) return;
+
+    const firstName =
+      application.firstName || "John";
+
+    const lastName =
+      application.lastName || "Smith";
+
+    const initials =
+      (
+        firstName.charAt(0) +
+        lastName.charAt(0)
+      ).toUpperCase();
+
+    $("dashboardAvatar").textContent =
+      initials;
+
+    $("dashboardUser").textContent =
+      firstName + " " + lastName;
+
+    $("dashboardFirstName").textContent =
+      firstName;
+
+    $("dashboardEmail").textContent =
+      application.email || "john@example.com";
+
+    $("dashboardLoanType").textContent =
+      application.loanType || "Personal Loan";
+
+    $("dashboardLoan").textContent =
+      money(application.amount || 25000);
+
+    $("dashboardBalance").textContent =
+      money(application.amount || 25000);
+
+    /*
+      Calculate approximate payment using
+      the demo's default 12.99% / 36-month rate.
+    */
+
+    const principal =
+      application.amount || 25000;
+
+    const annualRate =
+      12.99;
+
+    const months =
+      36;
+
+    const monthlyRate =
+      annualRate / 100 / 12;
+
+    const payment =
+      principal *
+      (
+        monthlyRate *
+        Math.pow(
+          1 + monthlyRate,
+          months
+        )
+      ) /
+      (
+        Math.pow(
+          1 + monthlyRate,
+          months
+        ) - 1
+      );
+
+    $("dashboardPayment").textContent =
+      moneyExact(payment);
+
+    if (
+      application.status === "Approved"
+    ) {
+
+      $("applicationStatusTitle").textContent =
+        "Approved";
+
+      $("statusPill").textContent =
+        "APPROVED";
+
+      $("statusPill").classList.add(
+        "approved"
+      );
+
+      document.querySelector(
+        ".progress div"
+      ).style.width = "100%";
+
+    } else {
+
+      $("applicationStatusTitle").textContent =
+        "Under review";
+
+      $("statusPill").textContent =
+        "UNDER REVIEW";
+
+      $("statusPill").classList.remove(
+        "approved"
+      );
+
+      document.querySelector(
+        ".progress div"
+      ).style.width = "65%";
+
+    }
+
+  }
+
+
+  function showDashboard() {
+
+    $("mainSite").style.display =
+      "none";
+
+    $("dashboard").classList.add(
+      "active"
+    );
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+
+  }
+
+
+  function logout() {
+
+    $("dashboard").classList.remove(
+      "active"
+    );
+
+    $("mainSite").style.display =
+      "block";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+
+    showToast(
+      "You have been signed out."
+    );
+
+  }
+
+
+  /* =====================================================
+     FAQ
+  ===================================================== */
+
+  document
+    .querySelectorAll(".faq-question")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const faq =
+            button.parentElement;
+
+          faq.classList.toggle("open");
+
+        }
+      );
+
+    });
+
+
+  /* =====================================================
+     CLOSE MODALS WHEN CLICKING OUTSIDE
+  ===================================================== */
+
+  document
+    .querySelectorAll(".modal-overlay")
+    .forEach(overlay => {
+
+      overlay.addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target === overlay
+          ) {
+
+            overlay.classList.remove(
+              "active"
+            );
+
+          }
+
+        }
+      );
+
+    });
+
+
+  /* =====================================================
+     MOBILE NAV
+  ===================================================== */
+
+  function toggleMobileMenu() {
+
+    const nav =
+      document.querySelector(
+        ".nav-links"
+      );
+
+    if (
+      nav.style.display === "flex"
+    ) {
+
+      nav.style.display = "";
+
+    } else {
+
+      nav.style.display = "flex";
+
+      nav.style.position = "absolute";
+
+      nav.style.top = "76px";
+
+      nav.style.left = "0";
+
+      nav.style.right = "0";
+
+      nav.style.padding = "20px";
+
+      nav.style.background = "white";
+
+      nav.style.flexDirection = "column";
+
+      nav.style.borderBottom =
+        "1px solid #e5e7eb";
+
+    }
+
+  }
+
+
+  /* =====================================================
+     INITIALIZE
+  ===================================================== */
+
+  calculateLoan();
+
+  const savedApplication =
+    JSON.parse(
+      localStorage.getItem(
+        "novaLendApplication"
+      ) || "null"
+    );
+
+  if (savedApplication) {
+
+    /*
+      Application remains available in
+      this browser for demo purposes.
+    */
+
+    console.log(
+      "Saved demo application:",
+      savedApplication
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
