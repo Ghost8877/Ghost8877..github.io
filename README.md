@@ -1,4 +1,4 @@
-https://Ghost8877.github.io/my-site/
+https://Ghost8877.github.io/my-site.com
 
 
 
