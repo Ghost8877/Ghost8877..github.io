@@ -1,1 +1,1 @@
-# Ghost8877..github.io
+# Ghost8877.github.io
